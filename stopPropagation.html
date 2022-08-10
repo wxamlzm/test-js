@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阻止冒泡</title>
+    <style>
+        .d1 {
+            width: 300px;
+            height: 300px;
+            background: blue;
+        }
+        .d2 {
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+        .d3 {
+            width: 100px;
+            height: 100px;
+            background: yellow;
+        }
+        div {
+            display: flex;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="d1">
+        <div class="d2">
+            <div class="d3"></div>
+        </div>
+    </div>
+</body>
+<script>
+    const d1 = document.querySelector('.d1');
+    const d2 = document.querySelector('.d2');
+    const d3 = document.querySelector('.d3');
+
+    d1.addEventListener( 'click', (e) => {
+        // e.stopPropagation;
+        console.log('I am d1');
+    })
+    d2.addEventListener( 'click', (e) => {
+        e.stopPropagation();
+        console.log('I am d2');
+    })
+    d3.addEventListener( 'click', (e) => {
+        e.stopPropagation();
+        console.log('I am d3');
+    })
+</script>
+</html>

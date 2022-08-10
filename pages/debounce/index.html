@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>debounce函数防抖 最后一次为准</title>
+</head>
+<body>
+    <button onclick="debounceHello()">sayhi</button>
+</body>
+<script>
+    function getHello() {
+        console.log('hello');
+    }
+
+    debounce = (fn, delay) => {
+        let timer;
+        
+        return (...args) => {
+            // 判断定时器是否存在，清除定时器
+            if(timer) {
+                clearTimeout(timer);
+            }
+
+            // 重新调用setTimeout
+            timer = setTimeout(()=>{
+                fn.apply(this, args);
+            }, delay);
+        }
+    }
+
+    let debounceHello = debounce(getHello, 2000)
+    console.log(debounceHello)
+</script>
+</html>

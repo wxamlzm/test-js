@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用js将URL转成对象</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function urlToObject(url) {
+        var urlToObject = {};
+        if(/\?/.test(url)) {
+            var urlString = url.substring(url.indexOf("?") + 1);
+            var urlArray = urlString.split("&");
+
+            for ( var i = 0, len = urlArray.length; i < len; i++ ) {
+                var urlItem = urlArray[i];
+                var item = urlItem.split("=");
+                urlObject[item[0]] = item[1];
+            }
+            return urlObject;
+        }
+    }
+</script>
+</html>

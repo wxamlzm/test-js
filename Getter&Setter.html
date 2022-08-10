@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES5访问器属性</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const obj = {
+        log: ['a', 'b', 'c'],
+        get latest() {
+            if (this.log.length === 0) {
+                return undefined;
+            }
+            return this.log[this.log.length -1];
+        },
+        set newObj(value) {
+            this.log = value;
+        }
+    };
+
+    obj.newObj = ['1', '2', '3']
+    
+    console.log(obj.latest);
+</script>
+</html>
