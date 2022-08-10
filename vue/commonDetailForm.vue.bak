@@ -1,0 +1,81 @@
+// 通用非编辑表单
+<template>
+  <van-cell-group class="common-detail-form">
+    <van-cell
+      v-for="(row, i) in config"
+      :key="i"
+      :value-class="[`detail-val-${row.prop}`, 'detail-val']"
+      :title="row.label"
+      :ref="`${row.prop}`"
+      title-class="detail-label"
+    >
+      <template #default>
+        <!-- 有格式化的情况 -->
+        <span v-if="row.formatter">
+          {{ row.formatter(tableData[row.prop]) }}
+        </span>
+        <span>
+          {{ tableData[row.prop] }}
+        </span>
+      </template>
+    </van-cell>
+  </van-cell-group>
+</template>
+
+<script>
+export default {
+  name: 'commonDetailForm',
+
+  props: {
+    // 当前表单配置文件
+    config: {
+      type: Array,
+      default () {
+        return []
+      }
+    },
+    // 当前表单数据
+    tableData: {
+      type: Object,
+      default () {
+        return {}
+      }
+    },
+    // 定制样式
+    custRowOption: {
+      type: Object,
+      default () {
+        return {}
+      }
+    }
+  },
+
+  methods: {
+    // 初始化表单
+    initForm () {
+      this.$nextTick(() => this.setCustStyle(this.custRowOption))
+    },
+
+    // 设置定制样式
+    setCustStyle (option) {
+      for (const key in option) {
+        // 获取对应的行
+        console.log(this.$refs[key])
+        return key
+      }
+    }
+  },
+
+  mounted () {
+    this.initForm()
+  }
+}
+</script>
+
+<style lang="stylus">
+.common-detail-form {
+  .detail-val {
+    flex-grow: 2
+  }
+}
+</style>
